@@ -25,34 +25,34 @@ export function SubscribeForm() {
     setEmailAddress("");
   }
 
-  if (!isSubscribed) {
-    return (
-      <form
-        id="subscribe"
-        className="bg-white rounded-xl overflow-hidden shadow-2xl flex mt-10 text-black"
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <input
-          type="email"
-          value={emailAddress}
-          placeholder="Email address"
-          required
-          onChange={(e) => setEmailAddress(e.target.value)}
-        />
-        <button
-          type="submit"
-          form="subscribe"
-          className="button-primary text-white py-2 px-4"
+  return (
+    <>
+      {isSubscribed ? (
+        <form
+          id="subscribe"
+          className="bg-white rounded-xl overflow-hidden shadow-2xl flex mt-10 text-black"
+          onSubmit={(e) => handleSubmit(e)}
         >
-          Join Us
-        </button>
-      </form>
-    );
-  }
-
-  if (isSubscribed) {
-    <p className="text-white text-base">
-      Welcome! Stay tuned for our launch announcement ✌🏽
-    </p>;
-  }
+          <input
+            type="email"
+            value={emailAddress}
+            placeholder="Email address"
+            required
+            onChange={(e) => setEmailAddress(e.target.value)}
+          />
+          <button
+            type="submit"
+            form="subscribe"
+            className="button-primary text-white py-2 px-4"
+          >
+            Join Us
+          </button>
+        </form>
+      ) : (
+        <p className="text-white text-lg mt-8">
+          Welcome! Stay tuned for our launch announcement 💜
+        </p>
+      )}
+    </>
+  );
 }
