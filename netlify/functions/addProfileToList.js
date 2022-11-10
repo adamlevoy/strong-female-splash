@@ -1,10 +1,10 @@
 const fetch = require("node-fetch");
 
 exports.handler = async function (event, context) {
-  const klaviyoPk = import.meta.env.KLAVIYO_PK;
+  const klaviyoPk = process.env.KLAVIYO_PK;
 
   // add profile to list config
-  const listId = import.meta.env.LIST_ID;
+  const listId = process.env.LIST_ID;
   const addProfileToListUrl = `https://a.klaviyo.com/api/lists/${listId}/relationships/profiles/`;
   const addProfileToListOptions = {
     method: "POST",

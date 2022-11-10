@@ -2,8 +2,7 @@ import { useState } from "react";
 
 export function SubscribeForm() {
   const [emailAddress, setEmailAddress] = useState("");
-  const [profileId, setProfileId] = useState("");
-  const [profile, setProfile] = useState(null);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   const createProfileUrl = "/.netlify/functions/createProfile?";
   const addProfileToListUrl = "/.netlify/functions/addProfileToList?";
@@ -16,6 +15,7 @@ export function SubscribeForm() {
       .then((data) => {
         return fetch(`${addProfileToListUrl}profileId=${data.data.id}`);
       })
+      .then(setIsSubscribed(true))
       .catch((err) => console.log("ERROR:", err));
   }
 
@@ -25,26 +25,34 @@ export function SubscribeForm() {
     setEmailAddress("");
   }
 
-  return (
-    <form
-      id="subscribe"
-      className="bg-white rounded-xl overflow-hidden shadow-2xl flex mt-10 text-black"
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      <input
-        type="email"
-        value={emailAddress}
-        placeholder="Email address"
-        required
-        onChange={(e) => setEmailAddress(e.target.value)}
-      />
-      <button
-        type="submit"
-        form="subscribe"
-        className="button-primary text-white py-2 px-4"
+  if (!isSubscribed) {
+    return (
+      <form
+        id="subscribe"
+        className="bg-white rounded-xl overflow-hidden shadow-2xl flex mt-10 text-black"
+        onSubmit={(e) => handleSubmit(e)}
       >
-        Join Us
-      </button>
-    </form>
-  );
+        <input
+          type="email"
+          value={emailAddress}
+          placeholder="Email address"
+          required
+          onChange={(e) => setEmailAddress(e.target.value)}
+        />
+        <button
+          type="submit"
+          form="subscribe"
+          className="button-primary text-white py-2 px-4"
+        >
+          Join Us
+        </button>
+      </form>
+    );
+  }
+
+  if (isSubscribed) {
+    <p className="text-white text-base">
+      Welcome! Stay tuned for our launch announcement ✌🏽
+    </p>;
+  }
 }

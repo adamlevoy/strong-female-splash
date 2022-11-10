@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 
 exports.handler = async function (event, context) {
-  const klaviyoPk = import.meta.env.KLAVIYO_PK;
+  const klaviyoPk = process.env.KLAVIYO_PK;
 
   // create profile config
   const createProfileUrl = "https://a.klaviyo.com/api/profiles/";
