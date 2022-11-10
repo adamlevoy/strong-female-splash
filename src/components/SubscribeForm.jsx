@@ -27,7 +27,7 @@ export function SubscribeForm() {
 
   return (
     <>
-      {isSubscribed ? (
+      {!isSubscribed ? (
         <form
           id="subscribe"
           className="bg-white rounded-xl overflow-hidden shadow-2xl flex mt-10 text-black"
