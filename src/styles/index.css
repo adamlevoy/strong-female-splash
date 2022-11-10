@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent: 124, 58, 237;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      #da62c4 30%,
+      white 60%
+    );
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+    background-color: #f6f6f6;
+  }
+}
+
+@layer components {
+  .button-primary {
+    background-image: var(--accent-gradient);
+    background-size: 400%;
+    background-position: 0%;
+    border: 0;
+    outline: 0;
+  }
+
+  .button-primary:hover {
+    background-image: none;
+    background-color: var(--color-primary);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(0, 30px, 0);
+    }
+  }
+
+  #hero-illustration {
+    animation: float linear 2.5s infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #hero-illustration {
+      @apply animate-none;
+    }
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply text-transparent bg-clip-text;
+    @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
+  }
+}
