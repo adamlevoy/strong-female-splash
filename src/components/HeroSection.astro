@@ -1,0 +1,21 @@
+---
+import HeroIllustration from "../assets/HeroIllustration.astro";
+import { SubscribeForm } from "./SubscribeForm";
+---
+
+<section class="grid md:grid-cols-2 mx-auto py-8">
+  <div class="flex flex-col items-center justify-center text-center">
+    <h1
+      class="text-5xl sm:text-7xl xl:text-8xl font-bold text-white max-w-2xl mx-auto"
+    >
+      Product of a <span class="gradient-text">strong female</span>
+    </h1>
+    <p class="text-white text-xl mt-8">
+      A brand inspired by the people we are, and women who raised us.
+    </p>
+    <SubscribeForm client:load />
+  </div>
+  <div id="hero-illustration" class="flex items-center justify-center">
+    <HeroIllustration />
+  </div>
+</section>
